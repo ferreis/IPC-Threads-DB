@@ -1,0 +1,4 @@
+/home/ferreis/CLionProjects/IPC-Threads-DB/cmake-build-debug/CMakeFiles/cliente.dir
+/home/ferreis/CLionProjects/IPC-Threads-DB/cmake-build-debug/CMakeFiles/servidor.dir
+/home/ferreis/CLionProjects/IPC-Threads-DB/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ferreis/CLionProjects/IPC-Threads-DB/cmake-build-debug/CMakeFiles/rebuild_cache.dir
