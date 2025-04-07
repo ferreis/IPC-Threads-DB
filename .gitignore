@@ -1,0 +1,55 @@
+# Compilação geral
+*.o
+*.obj
+*.lo
+*.la
+*.al
+*.libs
+*.so
+*.dll
+*.dylib
+*.exe
+*.out
+*.a
+*.lib
+
+# CLion / CMake
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+build/
+compile_commands.json
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Arquivos de log e swap
+*.log
+*.swp
+*.swo
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.bak
+*~
+
+# Arquivos gerados pelo Visual Studio
+*.user
+*.suo
+*.ncb
+*.vcproj.*
+*.vcxproj.*
+*.sln
+
+# Binários do projeto
+cliente
+servidor
+IPC_Threads_DB
