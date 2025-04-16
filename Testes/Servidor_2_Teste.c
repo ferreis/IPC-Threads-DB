@@ -35,6 +35,12 @@ void *processar_requisicao(void *arg) {
     int id = -1;
 
     FILE *resposta = fopen(PIPE_RESPOSTA, "w");
+    if (!resposta) {
+        perror("Erro ao abrir o pipe de resposta");
+        pthread_mutex_unlock(&mutex_banco);
+        free(arg);
+        return NULL;
+    }    
 
     sscanf(requisicao, "%s %49s %49[^\n]", operacao, parametro1, parametro2);
 
@@ -87,7 +93,7 @@ void *processar_requisicao(void *arg) {
     } else if (strcmp(operacao, "UPDATE") == 0) {
         id = atoi(parametro1);
         Registro *r = buscar_registro(id);
-        if (r) {
+        if (r  != NULL) {
             strncpy(r->nome, parametro2, 50);
             salvar_banco();
             fprintf(resposta, "UPDATE OK: %d - %s\n", r->id, r->nome);
@@ -100,6 +106,7 @@ void *processar_requisicao(void *arg) {
     }
 
     pthread_mutex_unlock(&mutex_banco);
+    fprintf(resposta, "FIM\n");
     fclose(resposta);
     free(arg);
     return NULL;
@@ -163,6 +170,7 @@ int main() {
         }
         pthread_create(&thread, NULL, processar_requisicao, requisicao);
         pthread_detach(thread);
+        
     }
 
 
