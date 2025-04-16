@@ -11,7 +11,7 @@
 #define PIPE_ENTRADA "pipe_bd"
 #define PIPE_RESPOSTA "pipe_resposta"
 
-pthread_mutex_t mutex_banco;
+pthread_mutex_t mutex_banco; 
 Registro banco[MAX_REGISTROS];
 int num_registros = 0;
 
@@ -107,8 +107,8 @@ void *processar_requisicao(void *arg) {
 
     pthread_mutex_unlock(&mutex_banco);
     fprintf(resposta, "FIM\n");
-    fclose(resposta);
-    free(arg);
+    fclose(resposta); // fecha o pipe de resposta
+    free(arg); // libera a memória alocada para a requisição
     return NULL;
 }
 
@@ -170,10 +170,7 @@ int main() {
         }
         pthread_create(&thread, NULL, processar_requisicao, requisicao);
         pthread_detach(thread);
-        
     }
-
-
     fclose(pipe);
     pthread_mutex_destroy(&mutex_banco);
     return 0;
